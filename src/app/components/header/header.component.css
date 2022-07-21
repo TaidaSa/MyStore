@@ -1,0 +1,17 @@
+.header {
+  text-align: center;
+  background: #33b5e5;
+  color: #fff;
+  padding: 12px;
+}
+
+a {
+  color: #ffffff;
+  padding: 5px;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
