@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/Product';
-import { CartItems } from '../models/cartItems';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductserveService {
-  myStorage = window.localStorage;
 
   constructor(private http: HttpClient) { }
 
@@ -63,19 +61,20 @@ export class ProductserveService {
   //     }
   //   ]
   // }
+ 
+  //////////////
 
+  // getCartItems(): CartItems[] | [] {
+  //   const getItems = this.myStorage.getItem('cart');
+  //   return getItems? JSON.parse(getItems): [];
+  // }
 
-  getCartItems(): CartItems[] | [] {
-    const getItems = this.myStorage.getItem('cart');
-    return getItems? JSON.parse(getItems): [];
-  }
+  // addToCart(product: CartItems[]): void{
+  //   this.myStorage.setItem('cart', JSON.stringify(product));
+  // }
 
-  addToCart(product: CartItems[]): void{
-    this.myStorage.setItem('cart', JSON.stringify(product));
-  }
-
-  cartClear(): void{
-    this.myStorage.clear();
-  }
+  // cartClear(): void{
+  //   this.myStorage.clear();
+  // }
   
 }

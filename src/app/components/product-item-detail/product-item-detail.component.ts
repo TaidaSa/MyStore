@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartItems } from 'src/app/models/cartItems';
 import { Product } from 'src/app/models/Product';
 import { ProductserveService } from 'src/app/services/productserve.service';
+import { CartserveService } from "src/app/services/cartserve.service";
 
 @Component({
   selector: 'app-product-item-detail',
@@ -15,7 +16,7 @@ export class ProductItemDetailComponent implements OnInit {
   product: Product | null = null;
   selectedOption = 1 ;
 
-  constructor(private route: ActivatedRoute, private ProductserveService : ProductserveService) { }
+  constructor(private route: ActivatedRoute, private ProductserveService : ProductserveService, private CartserveService : CartserveService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params =>{
@@ -45,7 +46,7 @@ export class ProductItemDetailComponent implements OnInit {
     let alertMessage: string = '';
 
     const itemCount = this.selectedOption;
-    const cartItems: CartItems[] = this.ProductserveService.getCartItems();
+    const cartItems: CartItems[] = this.CartserveService.getCartItems();
     
 
     const itemID = cartItems.findIndex(cart => cart.id === cartItem.id)
@@ -57,7 +58,7 @@ export class ProductItemDetailComponent implements OnInit {
       alertMessage = `New Item '${cartItem.name}' added to cart`;
     }
 
-    this.ProductserveService.addToCart(toCartItem);
+    this.CartserveService.addToCart(toCartItem);
 
     alert(alertMessage);
   }

@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from './components/success/success.component';
+import { SuccesFormComponent } from './components/succes-form/succes-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,13 +21,15 @@ import { SuccessComponent } from './components/success/success.component';
     ProductItemDetailComponent,
     HeaderComponent,
     CartComponent,
-    SuccessComponent
+    SuccessComponent,
+    SuccesFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

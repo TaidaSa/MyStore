@@ -6,9 +6,9 @@
         </a>
         <p>{{ productData.name }}</p>
         <p>$ {{ productData.price }}</p>
-
         <form (ngSubmit)="onSubmit(productData)">
-          <input value="1" #options (change)="onSelected(options.value)" min="1" max="30" type="number" class="form-control select-input"  style="width:100%"/>
+          <!-- <input value="1" #options (change)="onSelected(options.value)" min="1" max="30" type="number" class="form-control select-input"  style="width:100%"/> -->
+          <input value="1"  name="option" (ngModel)="selectedOption" (ngModelChange)="onSelected($event)" min="1" max="30" type="number" class="form-control select-input"  style="width:100%"/>
           <button class="btn btn-primary">Add to cart</button>
         </form>
     </div>

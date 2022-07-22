@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartItems } from 'src/app/models/cartItems';
 import { Product } from 'src/app/models/Product';
 import { ProductserveService } from 'src/app/services/productserve.service';
+import { CartserveService } from "src/app/services/cartserve.service";
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +13,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   selectedOption = 1 ;
 
-  constructor(private ProductserveService : ProductserveService ) { }
+  constructor(private ProductserveService : ProductserveService, private CartserveService : CartserveService  ) { }
 
   ngOnInit(): void {
 
@@ -24,7 +25,7 @@ export class ProductListComponent implements OnInit {
     // this.products = this.ProductserveService.getData();
   }
 
-  onSelected(value:number): void{
+  onSelected(value): void{
     this.selectedOption = value;
   }
 
@@ -33,7 +34,7 @@ export class ProductListComponent implements OnInit {
     let alertMessage: string = '';
 
     const itemCount = this.selectedOption;
-    const cartItems: CartItems[] = this.ProductserveService.getCartItems();
+    const cartItems: CartItems[] = this.CartserveService.getCartItems();
     
 
     const itemID = cartItems.findIndex(cart => cart.id === cartItem.id)
@@ -45,7 +46,7 @@ export class ProductListComponent implements OnInit {
       alertMessage = `New Item '${cartItem.name}' added to cart`;
     }
 
-    this.ProductserveService.addToCart(toCartItem);
+    this.CartserveService.addToCart(toCartItem);
 
     alert(alertMessage);
   }

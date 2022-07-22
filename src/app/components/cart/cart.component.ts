@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItems } from 'src/app/models/cartItems';
 import { Product } from 'src/app/models/Product';
-import { ProductserveService } from 'src/app/services/productserve.service';
+import { CartserveService } from "src/app/services/cartserve.service";
 
 @Component({
   selector: 'app-cart',
@@ -13,16 +13,12 @@ export class CartComponent implements OnInit {
   products: Product[]= [];
   cartItems: CartItems[] = [];
   totalPrice: number = 0;
-  //////////////////
-  firstName: string='';
-  address: string='';
-  creditCard: number | string = '';
   
 
-  constructor(private ProductserveService : ProductserveService, private route: Router) { }
+  constructor(private CartserveService : CartserveService, private route: Router) { }
 
   ngOnInit(): void {
-    this.cartItems = this.ProductserveService.getCartItems();
+    this.cartItems = this.CartserveService.getCartItems();
     this.calculatePrice();
   }
 
@@ -37,7 +33,7 @@ export class CartComponent implements OnInit {
     const ItemId = this.cartItems? this.cartItems.findIndex(cart => cart.id === id): -1;
     if(ItemId != -1 && this.cartItems.length > 0){
       this.cartItems.splice(ItemId,1)
-      this.ProductserveService.addToCart(this.cartItems)
+      this.CartserveService.addToCart(this.cartItems)
       this.calculatePrice()
     }
   }
@@ -46,15 +42,14 @@ export class CartComponent implements OnInit {
     const curruntCount = value;
     const ItemId = this.cartItems.findIndex(cart => cart.id === id);
     ItemId != -1 && this.cartItems.length>0 ? this.cartItems[ItemId].option = curruntCount: null;
-    this.cartItems.length > 0 ? this.ProductserveService.addToCart(this.cartItems): null;
+    this.cartItems.length > 0 ? this.CartserveService.addToCart(this.cartItems): null;
     this.calculatePrice();
   }
 
 
-  onFormSubmit(){
-    const Name = this.firstName;
-    this.ProductserveService.cartClear();
-    this.route.navigateByUrl(`success/${Name}/${this.totalPrice}`)
+  formSucces(firstName: string){
+    this.CartserveService.cartClear();
+    this.route.navigateByUrl(`success/${firstName}/${this.totalPrice}`)
   }
 
 }
