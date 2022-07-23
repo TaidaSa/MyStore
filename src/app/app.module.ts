@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SuccessComponent } from './components/success/success.component';
 import { SuccesFormComponent } from './components/succes-form/succes-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductListItemComponent } from './components/product-list-item/product-list-item.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     CartComponent,
     SuccessComponent,
-    SuccesFormComponent
+    SuccesFormComponent,
+    ProductListItemComponent
   ],
   imports: [
     BrowserModule,
